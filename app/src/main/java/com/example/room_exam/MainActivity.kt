@@ -15,12 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-name"
-        )
-            .allowMainThreadQueries()
-            .build()
+        val db = AppDatabase.getInstance(this)
 
         binding.resultText.text = db.TodoDao().getAll().toString()
 
